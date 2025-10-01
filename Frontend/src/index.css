@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Colors - Purple gradient palette */
+    --background: 250 100% 99%;
+    --foreground: 260 10% 10%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 260 10% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 10% 10%;
+    
+    /* Purple primary colors */
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 280 84% 87%;
+    --primary-dark: 263 70% 50%;
+    
+    --secondary: 270 60% 96%;
+    --secondary-foreground: 260 10% 10%;
+    
+    --muted: 270 30% 96%;
+    --muted-foreground: 260 10% 40%;
+    
+    --accent: 271 91% 65%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    
+    --border: 270 30% 92%;
+    --input: 270 30% 92%;
+    --ring: 271 91% 65%;
+    
+    --radius: 1rem;
+    
+    /* Glass morphism variables */
+    --glass-background: 255 100% 100% / 0.7;
+    --glass-border: 255 255 255 / 0.18;
+    --glass-shadow: 0 8px 32px 0 rgb(139 92 246 / 0.12);
+    
+    /* Gradient definitions */
+    --gradient-primary: linear-gradient(135deg, hsl(271 91% 65%), hsl(280 84% 87%));
+    --gradient-secondary: linear-gradient(135deg, hsl(280 84% 87%), hsl(290 70% 92%));
+    --gradient-background: linear-gradient(180deg, hsl(250 100% 99%), hsl(270 60% 96%));
+    
+    /* Chat bubble colors */
+    --chat-user: 271 91% 65%;
+    --chat-assistant: 0 0% 100%;
+    --chat-assistant-border: 270 30% 92%;
+    
+    /* Badge colors */
+    --badge-hit: 142 76% 36%;
+    --badge-miss: 260 10% 50%;
+    
+    /* Animation timings */
+    --animation-fast: 150ms;
+    --animation-base: 250ms;
+    --animation-slow: 350ms;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--gradient-background);
+    min-height: 100vh;
+  }
+  
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Glass morphism card styles */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .glass-card-strong {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgb(139 92 246 / 0.15);
+  }
+  
+  /* Chat bubble styles */
+  .chat-bubble-user {
+    @apply bg-primary text-primary-foreground rounded-2xl rounded-br-sm px-4 py-3;
+    box-shadow: 0 2px 8px rgb(139 92 246 / 0.2);
+  }
+  
+  .chat-bubble-assistant {
+    @apply bg-card rounded-2xl rounded-bl-sm px-4 py-3;
+    border: 1px solid hsl(var(--chat-assistant-border));
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+  }
+  
+  /* Badge styles */
+  .badge-hit {
+    @apply bg-success text-success-foreground px-2 py-1 rounded-md text-xs font-medium;
+  }
+  
+  .badge-miss {
+    @apply bg-muted text-muted-foreground px-2 py-1 rounded-md text-xs font-medium;
+  }
+  
+  /* Loading skeleton */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted) / 0.5) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all var(--animation-base) cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background;
+  }
+}
+
